@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bill Summary</title>
+</head>
+<body>
+    <h1>Bill Summary</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Participant</th>
+                <th>Share</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person, share in person_shares.items() %}
+                <tr>
+                    <td>{{ person }}</td>
+                    <td>{{ share|round(2) }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+    "participants": [
+        {
+            "name": "P1"
+        },
+        {
+            "name": "P2"
+        },
+        {
+            "name": "P3"
+        }
+    ],
+    "items": [
+        {
+            "name": "Cilantro",
+            "cost": 0.88
+        },
+        {
+            "name": "Apples",
+            "cost": 5.74
+        },
+        {
+            "name": "Onions",
+            "cost": 3.37
+        },
+        {
+            "name": "Tomatoes",
+            "cost": 2.03
+        },
+        {
+            "name": "Protein Bars",
+            "cost": 10.96
+        },
+        {
+            "name": "Face Wash",
+            "cost": 12.08
+        },
+        {
+            "name": "Bread",
+            "cost": 1.32
+        },
+        {
+            "name": "Deoderant",
+            "cost": 5.78
+        },
+        {
+            "name": "Eggs",
+            "cost": 5.31
+        },
+        {
+            "name": "Milk",
+            "cost": 5.12
+        },
+        {
+            "name": "Popcorn",
+            "cost": 5.48
+        },
+        {
+            "name": "Toothpaste",
+            "cost": 4.97
+        },
+        {
+            "name": "Body Wash",
+            "cost": 9.97
+        },
+        {
+            "name": "Method Body Wash",
+            "cost": 7.98
+        }
+    ]
+}

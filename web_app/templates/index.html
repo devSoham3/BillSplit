@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create and Display JSON</title>
+</head>
+<body>
+    <h1>Create and Display JSON</h1>
+
+    <form method="POST" action="/generate_json">
+        <label for="participants">Participants (comma-separated):</label>
+        <input type="text" name="participants" required><br><br>
+
+        <div id="item_fields">
+            <div class="item_field">
+                <label for="item_name">Item Name:</label>
+                <input type="text" name="item_name[]" required>
+                <label for="item_cost">Item Cost:</label>
+                <input type="number" name="item_cost[]" step="0.01" required>
+                <br><br>
+            </div>
+        </div>
+
+        <button type="button" id="add_item">Add Item</button>
+        <br><br>
+
+        <input type="submit" value="Generate JSON">
+    </form>
+
+    <!-- Display button to show JSON data -->
+    <button type="button" id="display_data">Display BillSplit Data</button>
+
+    <!-- Add the "Enter Shares" button -->
+    <form method="GET" action="/enter_shares">
+        <button type="submit">Enter Shares</button>
+    </form>
+
+    <!-- Placeholder for displaying participant names -->
+    <div id="participants_data" style="display: none;">
+        <h2>Participants:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Participant names will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Placeholder for displaying items and their costs -->
+    <div id="items_data" style="display: none;">
+        <h2>Items and Costs:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items and costs will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById("add_item").addEventListener("click", function () {
+        var itemField = document.createElement("div");
+        itemField.className = "item_field";
+        itemField.innerHTML = `
+            <label for="item_name">Item Name:</label>
+            <input type="text" name="item_name[]" required>
+            <label for="item_cost">Item Cost:</label>
+            <input type="number" name="item_cost[]" step="0.01" required>
+            <br><br>
+        `;
+        document.getElementById("item_fields").appendChild(itemField);
+        });
+
+        document.getElementById("display_data").addEventListener("click", function () {
+        // Fetch JSON data and display it
+        fetch('/get_json_data')
+            .then(response => response.json())
+            .then(data => {
+                displayParticipants(data.participants);
+                displayItems(data.items);
+                document.getElementById("participants_data").style.display = "block";
+                document.getElementById("items_data").style.display = "block";
+            });
+    });
+
+        // Function to display participant names
+        function displayParticipants(participants) {
+            const participantsTable = document.getElementById("participants_data");
+            const participantsBody = participantsTable.querySelector("tbody");
+            participantsBody.innerHTML = '';
+
+            participants.forEach(participant => {
+                const row = participantsBody.insertRow();
+                const cell = row.insertCell();
+                cell.innerHTML = participant.name;
+            });
+        }
+
+        // Function to display items and their costs
+        function displayItems(items) {
+            const itemsTable = document.getElementById("items_data");
+            const itemsBody = itemsTable.querySelector("tbody");
+            itemsBody.innerHTML = '';
+
+            items.forEach(item => {
+                const row = itemsBody.insertRow();
+                const nameCell = row.insertCell();
+                const costCell = row.insertCell();
+                nameCell.innerHTML = item.name;
+                costCell.innerHTML = item.cost.toFixed(2);
+            });
+        }
+    </script>
+</body>
+</html>

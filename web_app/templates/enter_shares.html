@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Shares</title>
+</head>
+<body>
+    <h1>Enter Shares</h1>
+    <form method="POST" action="/calculate_bill">
+        <table>
+            <thead>
+                <tr>
+                    <th>Participants</th>
+                    {% for item in items %}
+                        <th>{{ item.name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for participant in participants %}
+                    <tr>
+                        <td>{{ participant.name }}</td>
+                        {% for item in items %}
+                            <td>
+                                <input type="number" name="{{ participant.name }}_{{ item.name }}" step="0.01" required>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Calculate Bill">
+    </form>
+</body>
+</html>

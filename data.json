@@ -1,0 +1,12 @@
+{
+    "participants": [
+        {"name": "P1"},
+        {"name": "P2"},
+        {"name": "P3"}
+    ],
+    "items": [
+        {"name": "milk", "cost": 5.12},
+        {"name": "eggs", "cost": 5.31},
+        {"name": "popcorn", "cost": 5.48}
+    ]
+}
